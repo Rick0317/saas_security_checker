@@ -1,0 +1,1577 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-23T02:46:57.514717",
+    "target": "https://httpbin.org",
+    "tool_version": "1.0.0",
+    "config": {
+      "target": {
+        "url": "https://httpbin.org",
+        "timeout": 30,
+        "user_agent": "SaaS-Security-Checker/1.0"
+      },
+      "tests": {
+        "sql_injection": {
+          "enabled": true,
+          "risk_level": 3,
+          "crawl": false,
+          "forms": true
+        },
+        "port_discovery": {
+          "enabled": true,
+          "ports": "1-1000"
+        },
+        "dns_checks": {
+          "enabled": true
+        },
+        "http_headers": {
+          "enabled": true
+        },
+        "tls_security": {
+          "enabled": true
+        },
+        "web_scanner": {
+          "enabled": true,
+          "depth": 2
+        },
+        "dependency_check": {
+          "enabled": true
+        },
+        "auth_security": {
+          "enabled": true
+        },
+        "password_check": {
+          "enabled": true
+        },
+        "packet_sniffing_prevention": {
+          "enabled": true
+        }
+      },
+      "output": {
+        "format": [
+          "json",
+          "html",
+          "console"
+        ],
+        "directory": "./reports"
+      },
+      "advanced": {
+        "rate_limit": {
+          "requests_per_second": 10
+        },
+        "proxy": {
+          "enabled": false,
+          "http": "",
+          "https": ""
+        },
+        "custom_headers": {
+          "enabled": false,
+          "headers": {}
+        },
+        "exclude_patterns": [
+          "*.css",
+          "*.js",
+          "*.png",
+          "*.jpg",
+          "*.gif"
+        ],
+        "include_patterns": [
+          "*.php",
+          "*.asp",
+          "*.jsp",
+          "*.py",
+          "*.rb"
+        ]
+      }
+    }
+  },
+  "summary": {
+    "total_tests": 10,
+    "completed_tests": 6,
+    "failed_tests": 3,
+    "skipped_tests": 1,
+    "total_vulnerabilities": 15,
+    "critical_vulnerabilities": 0,
+    "high_vulnerabilities": 2,
+    "medium_vulnerabilities": 6,
+    "low_vulnerabilities": 7,
+    "total_recommendations": 21,
+    "high_priority_recommendations": 10,
+    "medium_priority_recommendations": 7,
+    "low_priority_recommendations": 4
+  },
+  "results": {
+    "sql_injection": {
+      "status": "skipped",
+      "reason": "SQLMap not found. Please install SQLMap or provide path.",
+      "timestamp": "2025-09-23T02:44:39.311748"
+    },
+    "port_discovery": {
+      "status": "error",
+      "timestamp": "2025-09-23T02:44:39.315294",
+      "target": "httpbin.org",
+      "ports": [],
+      "services": [],
+      "vulnerabilities": [],
+      "recommendations": [],
+      "error": "'TCP/IP fingerprinting (for OS scan) requires root privileges.\\nQUITTING!\\n'"
+    },
+    "dns_checks": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:44:39.435681",
+      "target": "httpbin.org",
+      "dns_records": {
+        "A": [
+          "98.85.20.193",
+          "52.204.95.73",
+          "34.225.98.78",
+          "18.215.192.30",
+          "44.195.242.49",
+          "44.207.255.255"
+        ],
+        "AAAA": [],
+        "CNAME": [],
+        "MX": [],
+        "NS": [
+          "ns-1053.awsdns-03.org.",
+          "ns-1555.awsdns-02.co.uk.",
+          "ns-173.awsdns-21.com.",
+          "ns-884.awsdns-46.net."
+        ],
+        "TXT": [
+          "\"v=spf1 -all\""
+        ],
+        "SOA": [
+          "ns-1053.awsdns-03.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+        ],
+        "SRV": [],
+        "PTR": []
+      },
+      "subdomains": [
+        "beta.httpbin.org",
+        "www.httpbin.org"
+      ],
+      "vulnerabilities": [
+        {
+          "type": "Missing DMARC Record",
+          "severity": "Medium",
+          "description": "No DMARC record found",
+          "recommendation": "Add DMARC record to prevent email spoofing",
+          "test_source": "dns_checks"
+        },
+        {
+          "type": "Missing DKIM Record",
+          "severity": "Low",
+          "description": "No DKIM record found",
+          "recommendation": "Consider adding DKIM record for email authentication",
+          "test_source": "dns_checks"
+        },
+        {
+          "type": "No DNS over HTTPS",
+          "severity": "Low",
+          "description": "DNS over HTTPS not supported",
+          "recommendation": "Consider implementing DNS over HTTPS for privacy",
+          "test_source": "dns_checks"
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement DMARC record",
+          "details": "Add DMARC record to prevent email spoofing attacks",
+          "test_source": "dns_checks"
+        },
+        {
+          "priority": "Low",
+          "recommendation": "Consider DNS over HTTPS",
+          "details": "Implement DNS over HTTPS for enhanced privacy",
+          "test_source": "dns_checks"
+        }
+      ],
+      "reverse_dns": {
+        "98.85.20.193": [
+          "ec2-98-85-20-193.compute-1.amazonaws.com."
+        ],
+        "52.204.95.73": [
+          "ec2-52-204-95-73.compute-1.amazonaws.com."
+        ],
+        "34.225.98.78": [
+          "ec2-34-225-98-78.compute-1.amazonaws.com."
+        ],
+        "18.215.192.30": [
+          "ec2-18-215-192-30.compute-1.amazonaws.com."
+        ],
+        "44.195.242.49": [
+          "ec2-44-195-242-49.compute-1.amazonaws.com."
+        ],
+        "44.207.255.255": [
+          "ec2-44-207-255-255.compute-1.amazonaws.com."
+        ]
+      },
+      "doh_support": false
+    },
+    "http_headers": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:44:43.019413",
+      "target": "https://httpbin.org",
+      "headers": {
+        "Date": "Tue, 23 Sep 2025 06:44:44 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": "9593",
+        "Connection": "keep-alive",
+        "Server": "gunicorn/19.9.0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      "vulnerabilities": [
+        {
+          "type": "Missing HSTS Header",
+          "severity": "High",
+          "description": "Strict-Transport-Security header not present",
+          "recommendation": "Add HSTS header to force HTTPS connections",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing X-Content-Type-Options",
+          "severity": "Medium",
+          "description": "X-Content-Type-Options header not present",
+          "recommendation": "Add X-Content-Type-Options: nosniff header",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing X-Frame-Options",
+          "severity": "Medium",
+          "description": "X-Frame-Options header not present",
+          "recommendation": "Add X-Frame-Options header to prevent clickjacking",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing Content Security Policy",
+          "severity": "Medium",
+          "description": "Content-Security-Policy header not present",
+          "recommendation": "Implement Content Security Policy to prevent XSS attacks",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing X-XSS-Protection",
+          "severity": "Low",
+          "description": "X-XSS-Protection header not present",
+          "recommendation": "Add X-XSS-Protection header (though CSP is preferred)",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing Referrer-Policy",
+          "severity": "Low",
+          "description": "Referrer-Policy header not present",
+          "recommendation": "Add Referrer-Policy header to control referrer information",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing Permissions-Policy",
+          "severity": "Low",
+          "description": "Permissions-Policy header not present",
+          "recommendation": "Add Permissions-Policy header to control browser features",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing COEP",
+          "severity": "Low",
+          "description": "Cross-Origin-Embedder-Policy header not present",
+          "recommendation": "Consider adding COEP header for enhanced security",
+          "test_source": "http_headers"
+        },
+        {
+          "type": "Missing COOP",
+          "severity": "Low",
+          "description": "Cross-Origin-Opener-Policy header not present",
+          "recommendation": "Consider adding COOP header for enhanced security",
+          "test_source": "http_headers"
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement comprehensive security headers",
+          "details": "Missing 6 critical security headers",
+          "test_source": "http_headers"
+        },
+        {
+          "priority": "High",
+          "recommendation": "Enforce HTTPS with HSTS",
+          "details": "Add Strict-Transport-Security header to force HTTPS connections",
+          "test_source": "http_headers"
+        }
+      ],
+      "status_code": 200
+    },
+    "tls_security": {
+      "status": "error",
+      "timestamp": "2025-09-23T02:44:44.007057",
+      "target": "https://httpbin.org",
+      "certificate": {
+        "error": "'SSLSocket' object has no attribute 'getpeercert_chain'"
+      },
+      "tls_config": {
+        "supported_protocols": [
+          "TLSv1.3"
+        ],
+        "supported_ciphers": [
+          {
+            "id": 50336514,
+            "name": "TLS_AES_256_GCM_SHA384",
+            "protocol": "TLSv1.3",
+            "description": "TLS_AES_256_GCM_SHA384         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(256)            Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "aes-256-gcm",
+            "digest": null,
+            "kea": "kx-any",
+            "auth": "auth-any"
+          },
+          {
+            "id": 50336515,
+            "name": "TLS_CHACHA20_POLY1305_SHA256",
+            "protocol": "TLSv1.3",
+            "description": "TLS_CHACHA20_POLY1305_SHA256   TLSv1.3 Kx=any      Au=any   Enc=CHACHA20/POLY1305(256) Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "chacha20-poly1305",
+            "digest": null,
+            "kea": "kx-any",
+            "auth": "auth-any"
+          },
+          {
+            "id": 50336513,
+            "name": "TLS_AES_128_GCM_SHA256",
+            "protocol": "TLSv1.3",
+            "description": "TLS_AES_128_GCM_SHA256         TLSv1.3 Kx=any      Au=any   Enc=AESGCM(128)            Mac=AEAD",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": true,
+            "symmetric": "aes-128-gcm",
+            "digest": null,
+            "kea": "kx-any",
+            "auth": "auth-any"
+          },
+          {
+            "id": 50380844,
+            "name": "ECDHE-ECDSA-AES256-GCM-SHA384",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-ECDSA-AES256-GCM-SHA384  TLSv1.2 Kx=ECDH     Au=ECDSA Enc=AESGCM(256)            Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "aes-256-gcm",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-ecdsa"
+          },
+          {
+            "id": 50380848,
+            "name": "ECDHE-RSA-AES256-GCM-SHA384",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-RSA-AES256-GCM-SHA384    TLSv1.2 Kx=ECDH     Au=RSA   Enc=AESGCM(256)            Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "aes-256-gcm",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50380843,
+            "name": "ECDHE-ECDSA-AES128-GCM-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-ECDSA-AES128-GCM-SHA256  TLSv1.2 Kx=ECDH     Au=ECDSA Enc=AESGCM(128)            Mac=AEAD",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": true,
+            "symmetric": "aes-128-gcm",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-ecdsa"
+          },
+          {
+            "id": 50380847,
+            "name": "ECDHE-RSA-AES128-GCM-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-RSA-AES128-GCM-SHA256    TLSv1.2 Kx=ECDH     Au=RSA   Enc=AESGCM(128)            Mac=AEAD",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": true,
+            "symmetric": "aes-128-gcm",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50384041,
+            "name": "ECDHE-ECDSA-CHACHA20-POLY1305",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-ECDSA-CHACHA20-POLY1305  TLSv1.2 Kx=ECDH     Au=ECDSA Enc=CHACHA20/POLY1305(256) Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "chacha20-poly1305",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-ecdsa"
+          },
+          {
+            "id": 50384040,
+            "name": "ECDHE-RSA-CHACHA20-POLY1305",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-RSA-CHACHA20-POLY1305    TLSv1.2 Kx=ECDH     Au=RSA   Enc=CHACHA20/POLY1305(256) Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "chacha20-poly1305",
+            "digest": null,
+            "kea": "kx-ecdhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50380836,
+            "name": "ECDHE-ECDSA-AES256-SHA384",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-ECDSA-AES256-SHA384      TLSv1.2 Kx=ECDH     Au=ECDSA Enc=AES(256)               Mac=SHA384",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": false,
+            "symmetric": "aes-256-cbc",
+            "digest": "sha384",
+            "kea": "kx-ecdhe",
+            "auth": "auth-ecdsa"
+          },
+          {
+            "id": 50380840,
+            "name": "ECDHE-RSA-AES256-SHA384",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-RSA-AES256-SHA384        TLSv1.2 Kx=ECDH     Au=RSA   Enc=AES(256)               Mac=SHA384",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": false,
+            "symmetric": "aes-256-cbc",
+            "digest": "sha384",
+            "kea": "kx-ecdhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50380835,
+            "name": "ECDHE-ECDSA-AES128-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-ECDSA-AES128-SHA256      TLSv1.2 Kx=ECDH     Au=ECDSA Enc=AES(128)               Mac=SHA256",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": false,
+            "symmetric": "aes-128-cbc",
+            "digest": "sha256",
+            "kea": "kx-ecdhe",
+            "auth": "auth-ecdsa"
+          },
+          {
+            "id": 50380839,
+            "name": "ECDHE-RSA-AES128-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "ECDHE-RSA-AES128-SHA256        TLSv1.2 Kx=ECDH     Au=RSA   Enc=AES(128)               Mac=SHA256",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": false,
+            "symmetric": "aes-128-cbc",
+            "digest": "sha256",
+            "kea": "kx-ecdhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50331807,
+            "name": "DHE-RSA-AES256-GCM-SHA384",
+            "protocol": "TLSv1.2",
+            "description": "DHE-RSA-AES256-GCM-SHA384      TLSv1.2 Kx=DH       Au=RSA   Enc=AESGCM(256)            Mac=AEAD",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": true,
+            "symmetric": "aes-256-gcm",
+            "digest": null,
+            "kea": "kx-dhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50331806,
+            "name": "DHE-RSA-AES128-GCM-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "DHE-RSA-AES128-GCM-SHA256      TLSv1.2 Kx=DH       Au=RSA   Enc=AESGCM(128)            Mac=AEAD",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": true,
+            "symmetric": "aes-128-gcm",
+            "digest": null,
+            "kea": "kx-dhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50331755,
+            "name": "DHE-RSA-AES256-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "DHE-RSA-AES256-SHA256          TLSv1.2 Kx=DH       Au=RSA   Enc=AES(256)               Mac=SHA256",
+            "strength_bits": 256,
+            "alg_bits": 256,
+            "aead": false,
+            "symmetric": "aes-256-cbc",
+            "digest": "sha256",
+            "kea": "kx-dhe",
+            "auth": "auth-rsa"
+          },
+          {
+            "id": 50331751,
+            "name": "DHE-RSA-AES128-SHA256",
+            "protocol": "TLSv1.2",
+            "description": "DHE-RSA-AES128-SHA256          TLSv1.2 Kx=DH       Au=RSA   Enc=AES(128)               Mac=SHA256",
+            "strength_bits": 128,
+            "alg_bits": 128,
+            "aead": false,
+            "symmetric": "aes-128-cbc",
+            "digest": "sha256",
+            "kea": "kx-dhe",
+            "auth": "auth-rsa"
+          }
+        ],
+        "preferred_cipher": [
+          "ECDHE-RSA-AES128-GCM-SHA256",
+          "TLSv1.2",
+          128
+        ],
+        "tls_version": "TLSv1.2"
+      },
+      "vulnerabilities": [],
+      "recommendations": [],
+      "error": "'days_until_expiry'"
+    },
+    "web_scanner": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:44:44.173514",
+      "target": "https://httpbin.org",
+      "crawl_results": {
+        "pages": [
+          {
+            "url": "https://httpbin.org",
+            "title": "httpbin.org",
+            "status_code": 200,
+            "content_length": 9593
+          }
+        ],
+        "forms": [],
+        "links": [
+          {
+            "url": "https://github.com/requests/httpbin",
+            "text": ""
+          },
+          {
+            "url": "https://kennethreitz.org",
+            "text": "the developer - Website"
+          },
+          {
+            "url": "https://github.com/rochacbruno/flasgger",
+            "text": "Flasgger"
+          },
+          {
+            "url": "https://httpbin.org/forms/post",
+            "text": "HTML form"
+          }
+        ],
+        "technologies": [
+          "jQuery",
+          "React"
+        ]
+      },
+      "vulnerabilities": [],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement Web Application Firewall (WAF)",
+          "details": "Deploy WAF to protect against common attacks",
+          "test_source": "web_scanner"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Regular security testing",
+          "details": "Perform regular penetration testing and vulnerability assessments",
+          "test_source": "web_scanner"
+        }
+      ],
+      "directory_discovery": {
+        "directories": [],
+        "files": [
+          {
+            "path": "/robots.txt",
+            "url": "https://httpbin.org/robots.txt",
+            "content_length": 30
+          }
+        ],
+        "status_codes": {
+          "404": 22,
+          "200": 1
+        }
+      },
+      "sensitive_files": []
+    },
+    "dependency_check": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:45:16.499465",
+      "target": "https://httpbin.org",
+      "dependencies": {},
+      "vulnerabilities": [],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement dependency scanning",
+          "details": "Set up automated dependency vulnerability scanning in CI/CD pipeline",
+          "test_source": "dependency_check"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Use dependency pinning",
+          "details": "Pin dependency versions to specific commits or hashes",
+          "test_source": "dependency_check"
+        },
+        {
+          "priority": "Low",
+          "recommendation": "Regular dependency updates",
+          "details": "Establish regular schedule for dependency updates and security patches",
+          "test_source": "dependency_check"
+        }
+      ],
+      "dependency_files": [],
+      "supply_chain": {
+        "cdn_usage": [],
+        "external_resources": [
+          {
+            "url": "http://www.w3.org/2000/svg",
+            "description": "External resource loaded"
+          },
+          {
+            "url": "http://www.w3.org/1999/xlink",
+            "description": "External resource loaded"
+          },
+          {
+            "url": "https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700",
+            "description": "External resource loaded"
+          },
+          {
+            "url": "https://github.com/requests/httpbin",
+            "description": "External resource loaded"
+          },
+          {
+            "url": "https://kennethreitz.org",
+            "description": "External resource loaded"
+          },
+          {
+            "url": "https://github.com/rochacbruno/flasgger",
+            "description": "External resource loaded"
+          }
+        ],
+        "vulnerabilities": []
+      }
+    },
+    "auth_security": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:45:35.488170",
+      "target": "https://httpbin.org",
+      "auth_endpoints": [],
+      "session_analysis": {
+        "cookies": [],
+        "session_config": {
+          "security_headers": {}
+        },
+        "vulnerabilities": []
+      },
+      "vulnerabilities": [],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement multi-factor authentication",
+          "details": "Add MFA for enhanced security",
+          "test_source": "auth_security"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Implement password policy",
+          "details": "Enforce strong password requirements",
+          "test_source": "auth_security"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Implement account lockout",
+          "details": "Lock accounts after failed login attempts",
+          "test_source": "auth_security"
+        },
+        {
+          "priority": "Low",
+          "recommendation": "Implement session timeout",
+          "details": "Set appropriate session timeout values",
+          "test_source": "auth_security"
+        }
+      ]
+    },
+    "password_check": {
+      "status": "error",
+      "timestamp": "2025-09-23T02:45:56.332244",
+      "target": "https://httpbin.org",
+      "password_policy": {
+        "min_length": null,
+        "max_length": null,
+        "requires_uppercase": false,
+        "requires_lowercase": false,
+        "requires_numbers": false,
+        "requires_special_chars": false,
+        "common_patterns": [],
+        "weak_passwords_accepted": []
+      },
+      "strength_tests": {
+        "weak_passwords": [],
+        "medium_passwords": [
+          {
+            "password": "123456",
+            "strength": {
+              "score": 4,
+              "level": "Weak",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add lowercase letters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers"
+              ],
+              "length": 6
+            }
+          },
+          {
+            "password": "password",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add numbers",
+                "Add special characters",
+                "Avoid common words"
+              ],
+              "length": 8
+            }
+          },
+          {
+            "password": "123456789",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add lowercase letters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers"
+              ],
+              "length": 9
+            }
+          },
+          {
+            "password": "12345678",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add lowercase letters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers"
+              ],
+              "length": 8
+            }
+          },
+          {
+            "password": "12345",
+            "strength": {
+              "score": 4,
+              "level": "Weak",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add lowercase letters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers"
+              ],
+              "length": 5
+            }
+          },
+          {
+            "password": "qwerty",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add numbers",
+                "Add special characters"
+              ],
+              "length": 6
+            }
+          },
+          {
+            "password": "abc123",
+            "strength": {
+              "score": 4,
+              "level": "Weak",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid sequential letters"
+              ],
+              "length": 6
+            }
+          },
+          {
+            "password": "password123",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "admin",
+            "strength": {
+              "score": 4,
+              "level": "Weak",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add numbers",
+                "Add special characters",
+                "Avoid common words"
+              ],
+              "length": 5
+            }
+          },
+          {
+            "password": "letmein",
+            "strength": {
+              "score": 5,
+              "level": "Medium",
+              "feedback": [
+                "Password too short (minimum 8 characters)",
+                "Consider using 12+ characters",
+                "Add uppercase letters",
+                "Add numbers",
+                "Add special characters"
+              ],
+              "length": 7
+            }
+          }
+        ],
+        "strong_passwords": [
+          {
+            "password": "Password1",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters",
+                "Avoid common words"
+              ],
+              "length": 9
+            }
+          },
+          {
+            "password": "MyPassword123",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 13
+            }
+          },
+          {
+            "password": "SecurePass1",
+            "strength": {
+              "score": 8,
+              "level": "Strong",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "Test123!",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 8
+            }
+          },
+          {
+            "password": "MySecure123",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters",
+                "Avoid sequential numbers"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "Password2023",
+            "strength": {
+              "score": 8,
+              "level": "Strong",
+              "feedback": [
+                "Add special characters",
+                "Avoid common words"
+              ],
+              "length": 12
+            }
+          },
+          {
+            "password": "Secure2023!",
+            "strength": {
+              "score": 9,
+              "level": "Very Strong",
+              "feedback": [
+                "Consider using 12+ characters"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "MyStr0ng!P@ssw0rd",
+            "strength": {
+              "score": 10,
+              "level": "Very Strong",
+              "feedback": [],
+              "length": 17
+            }
+          },
+          {
+            "password": "S3cur3P@ssw0rd!",
+            "strength": {
+              "score": 10,
+              "level": "Very Strong",
+              "feedback": [],
+              "length": 15
+            }
+          },
+          {
+            "password": "C0mpl3x!P@ss2023",
+            "strength": {
+              "score": 10,
+              "level": "Very Strong",
+              "feedback": [],
+              "length": 16
+            }
+          },
+          {
+            "password": "V3ryS3cur3!P@ss",
+            "strength": {
+              "score": 10,
+              "level": "Very Strong",
+              "feedback": [],
+              "length": 15
+            }
+          },
+          {
+            "password": "UltraS3cur3!P@ssw0rd2023",
+            "strength": {
+              "score": 10,
+              "level": "Very Strong",
+              "feedback": [],
+              "length": 24
+            }
+          },
+          {
+            "password": "January2023",
+            "strength": {
+              "score": 8,
+              "level": "Strong",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "Password123!",
+            "strength": {
+              "score": 8,
+              "level": "Strong",
+              "feedback": [
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 12
+            }
+          },
+          {
+            "password": "Welcome123",
+            "strength": {
+              "score": 6,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 10
+            }
+          },
+          {
+            "password": "ChangeMe123",
+            "strength": {
+              "score": 6,
+              "level": "Medium",
+              "feedback": [
+                "Consider using 12+ characters",
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 11
+            }
+          },
+          {
+            "password": "TempPassword1",
+            "strength": {
+              "score": 8,
+              "level": "Strong",
+              "feedback": [
+                "Add special characters",
+                "Avoid common words"
+              ],
+              "length": 13
+            }
+          },
+          {
+            "password": "NewPassword123",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Add special characters",
+                "Avoid sequential numbers",
+                "Avoid common words"
+              ],
+              "length": 14
+            }
+          },
+          {
+            "password": "DefaultPass1",
+            "strength": {
+              "score": 7,
+              "level": "Strong",
+              "feedback": [
+                "Add special characters",
+                "Avoid sequential letters",
+                "Avoid common words"
+              ],
+              "length": 12
+            }
+          }
+        ],
+        "common_passwords": [
+          {
+            "password": "123456",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "password",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "123456789",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "12345678",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "12345",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "qwerty",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "abc123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "password123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "admin",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "letmein",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "Password1",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "MyPassword123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "SecurePass1",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "MySecure123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "Password2023",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "January2023",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "Welcome123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "ChangeMe123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "TempPassword1",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "NewPassword123",
+            "reason": "Common password pattern"
+          },
+          {
+            "password": "DefaultPass1",
+            "reason": "Common password pattern"
+          }
+        ]
+      },
+      "vulnerabilities": [],
+      "recommendations": [],
+      "error": "'<' not supported between instances of 'NoneType' and 'int'"
+    },
+    "packet_sniffing_prevention": {
+      "status": "completed",
+      "timestamp": "2025-09-23T02:45:59.235451",
+      "target": "https://httpbin.org",
+      "network_analysis": {
+        "dns_over_https": false,
+        "dns_over_tls": false,
+        "ipv6_support": true,
+        "cdn_usage": false,
+        "network_path": [],
+        "vulnerabilities": []
+      },
+      "encryption_analysis": {
+        "https_enforcement": true,
+        "hsts_enabled": false,
+        "certificate_valid": false,
+        "tls_version": null,
+        "cipher_suite": null,
+        "perfect_forward_secrecy": false,
+        "vulnerabilities": []
+      },
+      "vulnerabilities": [
+        {
+          "type": "Mixed Content",
+          "severity": "High",
+          "description": "HTTPS page loads HTTP resources, vulnerable to downgrade attacks",
+          "recommendation": "Use HTTPS for all resources or implement Content Security Policy",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "type": "Unencrypted DNS Queries",
+          "severity": "Medium",
+          "description": "DNS queries are sent in plain text, vulnerable to DNS hijacking",
+          "recommendation": "Implement DNS over HTTPS or DNS over TLS",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "type": "No Perfect Forward Secrecy",
+          "severity": "Medium",
+          "description": "TLS configuration does not support Perfect Forward Secrecy",
+          "recommendation": "Configure ECDHE or DHE cipher suites",
+          "test_source": "packet_sniffing_prevention"
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "High",
+          "recommendation": "Implement HSTS",
+          "details": "Add Strict-Transport-Security header to prevent downgrade attacks",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "High",
+          "recommendation": "Enable Perfect Forward Secrecy",
+          "details": "Configure ECDHE or DHE cipher suites for forward secrecy",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Implement encrypted DNS",
+          "details": "Use DNS over HTTPS or DNS over TLS to prevent DNS hijacking",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "High",
+          "recommendation": "Disable insecure protocols",
+          "details": "Disable or secure 1 insecure protocols",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "High",
+          "recommendation": "Implement network monitoring",
+          "details": "Deploy network monitoring tools to detect packet sniffing attempts",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Use VPN for sensitive communications",
+          "details": "Implement VPN for additional encryption layer",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "Medium",
+          "recommendation": "Implement certificate pinning",
+          "details": "Pin SSL certificates to prevent man-in-the-middle attacks",
+          "test_source": "packet_sniffing_prevention"
+        },
+        {
+          "priority": "Low",
+          "recommendation": "Regular security assessments",
+          "details": "Perform regular network security assessments",
+          "test_source": "packet_sniffing_prevention"
+        }
+      ],
+      "protocol_analysis": {
+        "supported_protocols": [
+          {
+            "port": 80,
+            "protocol": "HTTP",
+            "secure": false
+          },
+          {
+            "port": 443,
+            "protocol": "HTTPS",
+            "secure": true
+          }
+        ],
+        "insecure_protocols": [
+          {
+            "port": 80,
+            "protocol": "HTTP",
+            "risk": "Medium"
+          }
+        ],
+        "recommendations": []
+      },
+      "segmentation_analysis": {
+        "subnet_analysis": [
+          {
+            "ip": "34.225.98.78",
+            "version": "IPv4",
+            "is_private": false,
+            "is_loopback": false,
+            "is_multicast": false
+          }
+        ],
+        "routing_analysis": [],
+        "isolation_issues": [],
+        "recommendations": []
+      }
+    }
+  },
+  "vulnerabilities": [
+    {
+      "type": "Missing HSTS Header",
+      "severity": "High",
+      "description": "Strict-Transport-Security header not present",
+      "recommendation": "Add HSTS header to force HTTPS connections",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Mixed Content",
+      "severity": "High",
+      "description": "HTTPS page loads HTTP resources, vulnerable to downgrade attacks",
+      "recommendation": "Use HTTPS for all resources or implement Content Security Policy",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "type": "Missing DMARC Record",
+      "severity": "Medium",
+      "description": "No DMARC record found",
+      "recommendation": "Add DMARC record to prevent email spoofing",
+      "test_source": "dns_checks"
+    },
+    {
+      "type": "Missing X-Content-Type-Options",
+      "severity": "Medium",
+      "description": "X-Content-Type-Options header not present",
+      "recommendation": "Add X-Content-Type-Options: nosniff header",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing X-Frame-Options",
+      "severity": "Medium",
+      "description": "X-Frame-Options header not present",
+      "recommendation": "Add X-Frame-Options header to prevent clickjacking",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing Content Security Policy",
+      "severity": "Medium",
+      "description": "Content-Security-Policy header not present",
+      "recommendation": "Implement Content Security Policy to prevent XSS attacks",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Unencrypted DNS Queries",
+      "severity": "Medium",
+      "description": "DNS queries are sent in plain text, vulnerable to DNS hijacking",
+      "recommendation": "Implement DNS over HTTPS or DNS over TLS",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "type": "No Perfect Forward Secrecy",
+      "severity": "Medium",
+      "description": "TLS configuration does not support Perfect Forward Secrecy",
+      "recommendation": "Configure ECDHE or DHE cipher suites",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "type": "Missing DKIM Record",
+      "severity": "Low",
+      "description": "No DKIM record found",
+      "recommendation": "Consider adding DKIM record for email authentication",
+      "test_source": "dns_checks"
+    },
+    {
+      "type": "No DNS over HTTPS",
+      "severity": "Low",
+      "description": "DNS over HTTPS not supported",
+      "recommendation": "Consider implementing DNS over HTTPS for privacy",
+      "test_source": "dns_checks"
+    },
+    {
+      "type": "Missing X-XSS-Protection",
+      "severity": "Low",
+      "description": "X-XSS-Protection header not present",
+      "recommendation": "Add X-XSS-Protection header (though CSP is preferred)",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing Referrer-Policy",
+      "severity": "Low",
+      "description": "Referrer-Policy header not present",
+      "recommendation": "Add Referrer-Policy header to control referrer information",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing Permissions-Policy",
+      "severity": "Low",
+      "description": "Permissions-Policy header not present",
+      "recommendation": "Add Permissions-Policy header to control browser features",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing COEP",
+      "severity": "Low",
+      "description": "Cross-Origin-Embedder-Policy header not present",
+      "recommendation": "Consider adding COEP header for enhanced security",
+      "test_source": "http_headers"
+    },
+    {
+      "type": "Missing COOP",
+      "severity": "Low",
+      "description": "Cross-Origin-Opener-Policy header not present",
+      "recommendation": "Consider adding COOP header for enhanced security",
+      "test_source": "http_headers"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "High",
+      "recommendation": "Implement DMARC record",
+      "details": "Add DMARC record to prevent email spoofing attacks",
+      "test_source": "dns_checks"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement comprehensive security headers",
+      "details": "Missing 6 critical security headers",
+      "test_source": "http_headers"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Enforce HTTPS with HSTS",
+      "details": "Add Strict-Transport-Security header to force HTTPS connections",
+      "test_source": "http_headers"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement Web Application Firewall (WAF)",
+      "details": "Deploy WAF to protect against common attacks",
+      "test_source": "web_scanner"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement dependency scanning",
+      "details": "Set up automated dependency vulnerability scanning in CI/CD pipeline",
+      "test_source": "dependency_check"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement multi-factor authentication",
+      "details": "Add MFA for enhanced security",
+      "test_source": "auth_security"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement HSTS",
+      "details": "Add Strict-Transport-Security header to prevent downgrade attacks",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Enable Perfect Forward Secrecy",
+      "details": "Configure ECDHE or DHE cipher suites for forward secrecy",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Disable insecure protocols",
+      "details": "Disable or secure 1 insecure protocols",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "High",
+      "recommendation": "Implement network monitoring",
+      "details": "Deploy network monitoring tools to detect packet sniffing attempts",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Regular security testing",
+      "details": "Perform regular penetration testing and vulnerability assessments",
+      "test_source": "web_scanner"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Use dependency pinning",
+      "details": "Pin dependency versions to specific commits or hashes",
+      "test_source": "dependency_check"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Implement password policy",
+      "details": "Enforce strong password requirements",
+      "test_source": "auth_security"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Implement account lockout",
+      "details": "Lock accounts after failed login attempts",
+      "test_source": "auth_security"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Implement encrypted DNS",
+      "details": "Use DNS over HTTPS or DNS over TLS to prevent DNS hijacking",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Use VPN for sensitive communications",
+      "details": "Implement VPN for additional encryption layer",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "Medium",
+      "recommendation": "Implement certificate pinning",
+      "details": "Pin SSL certificates to prevent man-in-the-middle attacks",
+      "test_source": "packet_sniffing_prevention"
+    },
+    {
+      "priority": "Low",
+      "recommendation": "Consider DNS over HTTPS",
+      "details": "Implement DNS over HTTPS for enhanced privacy",
+      "test_source": "dns_checks"
+    },
+    {
+      "priority": "Low",
+      "recommendation": "Regular dependency updates",
+      "details": "Establish regular schedule for dependency updates and security patches",
+      "test_source": "dependency_check"
+    },
+    {
+      "priority": "Low",
+      "recommendation": "Implement session timeout",
+      "details": "Set appropriate session timeout values",
+      "test_source": "auth_security"
+    },
+    {
+      "priority": "Low",
+      "recommendation": "Regular security assessments",
+      "details": "Perform regular network security assessments",
+      "test_source": "packet_sniffing_prevention"
+    }
+  ],
+  "risk_assessment": {
+    "risk_level": "High",
+    "risk_score": 45,
+    "max_possible_score": 150,
+    "risk_percentage": 30.0
+  }
+}

@@ -1,0 +1,11 @@
+requests>=2.31.0
+python-nmap>=0.7.1
+dnspython>=2.4.2
+cryptography>=41.0.0
+colorama>=0.4.6
+rich>=13.0.0
+pyyaml>=6.0.1
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+python-whois>=0.7.3
+sslyze>=5.0.0

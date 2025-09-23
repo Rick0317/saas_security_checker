@@ -1,0 +1,97 @@
+# SaaS Security Checker Configuration
+
+# Target configuration
+target:
+  url: "https://example.com"  # Target URL to test
+  timeout: 30                 # Request timeout in seconds
+  user_agent: "SaaS-Security-Checker/1.0"
+
+# Test configuration
+tests:
+  # SQL Injection Testing
+  sql_injection:
+    enabled: true
+    risk_level: 3            # SQLMap risk level (1-3)
+    crawl: false             # Enable crawling
+    forms: true              # Test forms
+  
+  # Port Discovery and Service Detection
+  port_discovery:
+    enabled: true
+    ports: "1-1000"          # Port range to scan
+  
+  # DNS Security Checks
+  dns_checks:
+    enabled: true
+  
+  # HTTP Headers Analysis
+  http_headers:
+    enabled: true
+  
+  # TLS/SSL Security Analysis
+  tls_security:
+    enabled: true
+  
+  # Web Application Scanning
+  web_scanner:
+    enabled: true
+    depth: 2                 # Crawling depth
+  
+  # Dependency Security Checks
+  dependency_check:
+    enabled: true
+  
+  # Authentication Security Analysis
+  auth_security:
+    enabled: true
+  
+  # Password Strength Analysis
+  password_check:
+    enabled: true
+  
+  # Packet Sniffing Prevention
+  packet_sniffing_prevention:
+    enabled: true
+  
+  # DNS Hijacking Prevention
+  dns_hijacking_prevention:
+    enabled: true
+
+# Output configuration
+output:
+  format: ["json", "html", "console"]  # Report formats
+  directory: "./reports"                # Output directory
+
+# Advanced configuration
+advanced:
+  # Rate limiting
+  rate_limit:
+    requests_per_second: 10
+  
+  # Proxy settings (optional)
+  proxy:
+    enabled: false
+    http: ""
+    https: ""
+  
+  # Custom headers
+  custom_headers:
+    enabled: false
+    headers: {}
+  
+  # Exclude patterns
+  exclude_patterns:
+    - "*.css"
+    - "*.js"
+    - "*.png"
+    - "*.jpg"
+    - "*.gif"
+  
+  # Include patterns
+  include_patterns:
+    - "*.php"
+    - "*.asp"
+    - "*.jsp"
+    - "*.py"
+    - "*.rb"
+
