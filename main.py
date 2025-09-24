@@ -33,6 +33,7 @@ from security_modules.web_scanner import WebScanner
 from security_modules.dependency_checker import DependencyChecker
 from security_modules.auth_security import AuthSecurityChecker
 from security_modules.password_checker import PasswordStrengthChecker
+from security_modules.rce_tester import RCETester
 from security_modules.packet_sniffing_prevention import PacketSniffingPrevention
 from security_modules.dns_hijacking_prevention import DNSHijackingPrevention
 from reporting.report_generator import ReportGenerator
@@ -71,6 +72,7 @@ class SecurityTestOrchestrator:
                 "dependency_check": {"enabled": True},
                 "auth_security": {"enabled": True},
                 "password_check": {"enabled": True},
+                "rce_testing": {"enabled": True},
                 "packet_sniffing_prevention": {"enabled": True},
                 "dns_hijacking_prevention": {"enabled": True}
             },
@@ -114,6 +116,7 @@ class SecurityTestOrchestrator:
             'dependency_check': DependencyChecker(self.config),
             'auth_security': AuthSecurityChecker(self.config),
             'password_check': PasswordStrengthChecker(self.config),
+            'rce_testing': RCETester(self.config),
             'packet_sniffing_prevention': PacketSniffingPrevention(self.config),
             'dns_hijacking_prevention': DNSHijackingPrevention(self.config)
         }

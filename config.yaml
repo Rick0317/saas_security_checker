@@ -49,6 +49,15 @@ tests:
   password_check:
     enabled: true
   
+  # Remote Code Execution Testing
+  rce_testing:
+    enabled: true
+    test_command_injection: true
+    test_deserialization: true
+    test_file_upload: true
+    test_template_injection: true
+    test_eval_injection: true
+  
   # Packet Sniffing Prevention
   packet_sniffing_prevention:
     enabled: true
