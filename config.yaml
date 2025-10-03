@@ -58,9 +58,41 @@ tests:
     test_template_injection: true
     test_eval_injection: true
   
+  # ZAP Integration
+  zap_integration:
+    enabled: true
+    host: "localhost"
+    port: 8080
+    api_key: ""
+    run_spider: true
+    run_active_scan: true
+    scan_policy: "Default Policy"
+    max_scan_duration: 3600  # 1 hour
+  
   # Packet Sniffing Prevention
   packet_sniffing_prevention:
     enabled: true
+  
+  # ZAP Java-based security testing (uses original ZAP Java code)
+  zap_java_testing:
+    enabled: true
+    # Individual scanner configuration
+    xss_scanner: true
+    sql_injection_scanner: true
+    directory_traversal_scanner: true
+    command_injection_scanner: true
+    file_inclusion_scanner: true
+    csrf_scanner: true
+    information_disclosure_scanner: true
+    authentication_scanner: true
+    session_management_scanner: true
+    ssl_tls_scanner: true
+    # Scanner-specific options
+    attack_strength: "MEDIUM"  # LOW, MEDIUM, HIGH, INSANE
+    alert_threshold: "MEDIUM"  # LOW, MEDIUM, HIGH
+    timeout: 300  # seconds per scanner
+    parallel_scans: true
+    max_concurrent_scans: 3
   
   # DNS Hijacking Prevention
   dns_hijacking_prevention:
